@@ -9,7 +9,7 @@
 // @run-at         document-end
 // ==/UserScript==
 
-// All your GM code must be inside this function
+// Main "GM" code
 function letsJQuery() {
 	var currentPage = 0;
 	var maxPage = 0;
