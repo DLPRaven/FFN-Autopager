@@ -1,0 +1,3 @@
+This script is built to run on both Firefox with GreaseMonkey extension and Chrome/Chromium natively.
+
+To install, one needs only to open the file in their browser of choice, GreaseMonkey/Chrome will prompt for install.
