@@ -9,7 +9,7 @@
 // @run-at         document-end
 // ==/UserScript==
 
-// Main "GM" code
+// All your GM code must be inside this function
 function letsJQuery() {
 	var currentPage = 0;
 	var maxPage = 0;
@@ -36,16 +36,28 @@ function letsJQuery() {
 					alert("Error loading next chapter.");
 				}
 				
+				// Match out title
+				var titlematch = (new RegExp('<title>([^>]*)</title>')).exec(data);
+				if (titlematch == null ) {
+				  titlematch[1] = document.title;
+				}
+				
+				// Change title
+				document.title = titlematch[1];
+				
 				// Append chapter
 				$('div#storytext' + currentPage).after("<hr />" + regmatch[0]);
 				
 				// Rename storytext
-				$('div#storytext').attr('id', 'storytext' + (Number(currentPage)+1));
+				$('div#storytext').attr('id', 'storytext' + nextPage);
 				
 				// Increment the selectboxes
 				$('select[name="chapter"]').map(function() {
 					this.selectedIndex = currentPage;
 				});
+				
+				// Push history state
+				window.history.pushState({mine:true}, document.title, '/s/'+loc[2]+'/'+ nextPage +'/'+loc[4]);
 				
 				// Change the next URL
 				var nextNextPage = +nextPage + +1;
