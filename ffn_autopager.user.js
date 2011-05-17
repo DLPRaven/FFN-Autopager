@@ -2,8 +2,8 @@
 // @name           FFN Autopager Cross-Browser
 // @namespace      net.projectdlp.js.ffn.autopager
 // @description    Autopages between chapters for FanFiction.Net
-// @version 1.2.2
-// @uso:version 1.2.2
+// @version 1.2.4
+// @uso:version 1.2.4
 // @include        http://*.fanfiction.net/*
 // @match          http://*.fanfiction.net/*
 // @run-at         document-end
@@ -42,8 +42,13 @@ function letsJQuery() {
 				  titlematch[1] = document.title;
 				}
 
+				// Increment the selectboxes
+				$('select[name="chapter"]').map(function() {
+					this.selectedIndex = currentPage;
+				});
+
 				// Get Chapter title
-				var chaptertitle = $('select[name="chapter"]').text();
+				var chaptertitle = $('select[name="chapter"] :selected').text();
 				
 				// Change title
 				document.title = titlematch[1];
@@ -53,11 +58,6 @@ function letsJQuery() {
 				
 				// Rename storytext
 				$('div#storytext').attr('id', 'storytext' + nextPage);
-				
-				// Increment the selectboxes
-				$('select[name="chapter"]').map(function() {
-					this.selectedIndex = currentPage;
-				});
 				
 				// Push history state
 				window.history.pushState({mine:true}, document.title, '/s/'+loc[2]+'/'+ nextPage +'/'+loc[4]);
