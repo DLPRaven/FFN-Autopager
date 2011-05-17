@@ -2,8 +2,8 @@
 // @name           FFN Autopager Cross-Browser
 // @namespace      net.projectdlp.js.ffn.autopager
 // @description    Autopages between chapters for FanFiction.Net
-// @version 1.2.1
-// @uso:version 1.2.1
+// @version 1.2.2
+// @uso:version 1.2.2
 // @include        http://*.fanfiction.net/*
 // @match          http://*.fanfiction.net/*
 // @run-at         document-end
@@ -43,7 +43,7 @@ function letsJQuery() {
 				}
 
 				// Get Chapter title
-				var chaptertitle = $('select[name="chapter"] option:selected').text();
+				var chaptertitle = $('select[name="chapter"]').text();
 				
 				// Change title
 				document.title = titlematch[1];
