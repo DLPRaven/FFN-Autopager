@@ -76,8 +76,19 @@ function letsJQuery() {
 			
 			// Unflag protection
 			loading = false;
+			
+			// Hide social media
+			hideSocialBullshit();
 		}	
 	}
+	
+	function hideSocialBullshit() {
+	    // TODO: Doesn't work perfectly with live-loaded chapters. Will fix in 1.2.7
+	    $('div.a2a_default_style').remove();
+	}
+	
+	// Most importantly, hide social media bullshit
+	hideSocialBullshit();
 	
 	// Grab the storyid/url out of the URL
 	loc = /(.*)\/s\/(\d+)\/(\d+)(?:\/(.*))?/i.exec(document.location);
