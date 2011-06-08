@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name           FFN Autopager Cross-Browser
-// @namespace      net.projectdlp.js.ffn.autopager
-// @description    Autopages between chapters for FanFiction.Net
+// @name           FFN Autopager Cross-Browser Reloaded
+// @namespace      net.projectdlp.js.ffn.autopager_reload
+// @description    Autopages between chapters for FanFiction.Net by Reloading
 // @version 1.2.6
 // @uso:version 1.2.6
 // @include        http://*.fanfiction.net/*
@@ -14,17 +14,21 @@ function letsJQuery() {
 	var currentPage = 0;
 	var maxPage = 0;
 	var loc;
+	var loading = false;
 	
 	function loadNextChapter() {
 		// As long as we have chapters to load...
 		if (currentPage < maxPage && !loading) {
+		  // Make sure it doesn't continually try to reload
+		  loading = true;
+		  
 			// Next page number, necessary because of JS engine bug in FF 3.6.13
 			// + is for type coersion.
 			var nextPage = +currentPage + +1;
 			
 			// Redirect page
 			var url = loc[1]+'/s/'+loc[2]+'/'+ nextPage +'/'+loc[4];
-			$(location).attr('url', url);
+			$(location).attr('href', url);
 		}	
 	}
 	
